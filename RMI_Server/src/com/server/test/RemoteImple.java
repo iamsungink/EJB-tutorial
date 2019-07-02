@@ -22,7 +22,7 @@ public class RemoteImple extends UnicastRemoteObject implements RemoteInterface 
 	@Override
 	public String sayHello(String str) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return "Hello!!" + str;
 	}
 
 }
