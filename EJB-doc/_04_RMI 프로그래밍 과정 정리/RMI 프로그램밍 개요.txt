@@ -1,0 +1,31 @@
+[RMI 프로그래밍 개요]
+
+# 프로그래밍 과정
+
+1) Remote 인터페이스 개발
+ - java.rmi.Remote(인터페이스)를 extends 상속 받는다.
+ - 원격메소드에 java.rmi.RemoteException을 선언한다.
+ 
+2) 원격 객체(Remote Object)를 개발한다.
+ - 1)번에서 개발한 Remote 인터페이스를 구현(implemens)한다.
+ - java.rmi.server.UnicastRemoteObject를 상속(extends)받는다.
+ - 기본생성자는 RemoteException을 선언(throws)한다.  ---> 부모(Remote 인터페이스에서 throws를 했기 때문)
+ 
+3) 서버기능을 수행할 프로그램을 개발한다.
+ - 원격객(Servant객체)를 생성한다.
+ - 원격객체를 Naming Server(RMIRegistry)에 등록
+   ** java.rmi.Namgin.rebind("aaa",b1) //Naming Server ==> RMI Registry
+
+
+4) Client 어플리케이션 개발한다.
+ - Servant(원격객체) Reference를 얻어온다.
+   ** Naming.lookup("rmi://ip:port/aaa"); //aaa는 원격객체의 식별자
+   
+# 실행 방법
+1) RMIRegistry[Naming Server]를 실행한다.
+ - 도스창에서는 경로명> start rmiregistry
+ - 자바코드를 이용하는 방법 : LocateRegistry.createRegistry(port), port는 1099가 기본값
+
+2) 클라이언트에게 Remote Interface와 배포
+
+3) 클라이언트 실행
